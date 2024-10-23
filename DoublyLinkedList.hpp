@@ -12,7 +12,7 @@ private:
     const MY_TYPE data;
     std::shared_ptr<Node> next;
     std::weak_ptr<Node> prev;
-    explicit Node(const MY_TYPE _data) : data{_data}, next{nullptr} {};
+    explicit Node(const MY_TYPE _data) : data{_data}, next{nullptr}, prev{std::shared_ptr<Node>{nullptr}} {};
     ~Node() {
       std::cout << "Node destructor working...\n";
     }
@@ -25,7 +25,7 @@ public:
   int PushBack(const MY_TYPE inp);
   int Remove(const MY_TYPE inp);
   DoublyLinkedList();
-  ~DoublyLinkedList() {}
+  ~DoublyLinkedList();
 
   DoublyLinkedList(const DoublyLinkedList& other) = delete;
   DoublyLinkedList(DoublyLinkedList&& tmp) = delete;

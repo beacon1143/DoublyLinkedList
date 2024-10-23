@@ -71,6 +71,13 @@ DoublyLinkedList::DoublyLinkedList() {
   last_ = nullptr;
   size_ = 0;
 }
+DoublyLinkedList::~DoublyLinkedList() {
+  while (first_ != nullptr) {
+    //std::cout << "In the destructor loop...\n";
+    first_ = first_->next;
+  }
+  last_ = nullptr;
+}
 
 std::ostream& operator<<(std::ostream& out, const DoublyLinkedList& list) {
   if (list.GetSize() == 0) {
