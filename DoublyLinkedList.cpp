@@ -84,14 +84,22 @@ std::ostream& operator<<(std::ostream& out, const DoublyLinkedList& list) {
     out << "No elements in the list!\n";
     return out;
   }
+  // forward
   auto tmp = list.first_;
   if (tmp == nullptr) {
     throw std::runtime_error("Error! In DoublyLinkedList::operator<<!\n");
   }
-  while (tmp->next != nullptr) {
+  while (tmp != nullptr) {
     out << tmp->data << " ";
     tmp = tmp->next;
   }
-  out << tmp->data << "\n";
+  out << "\n";
+  // backward
+  auto tmp1 = list.last_;
+  while (tmp1 != nullptr) {
+    out << tmp1->data << " ";
+    tmp1 = tmp1->prev.lock();
+  }
+  out << "\n";
   return out;
 }
